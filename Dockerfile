@@ -22,4 +22,9 @@ RUN make install
 
 RUN cp /isolate/isolate /bin/isolate
 
+# Install playwright dependencies (browsers, apt packages)
+# Which aren't included in the playwright package in package.json
+RUN npx playwright install
+RUN npx playwright install-deps
+
 WORKDIR /app/
