@@ -25,6 +25,8 @@ export enum Path {
   AdminProblemSetList = "AdminProblemSetList",
   AdminContestList = "AdminContestList",
   AdminFileDownload = "AdminFileDownload",
+  UserView = "UserView",
+  UserEdit = "UserEdit",
 }
 
 export type PathArguments =
@@ -50,7 +52,9 @@ export type PathArguments =
   | { kind: Path.AdminTaskList }
   | { kind: Path.AdminProblemSetList }
   | { kind: Path.AdminContestList }
-  | { kind: Path.AdminFileDownload; hash: string; filename: string };
+  | { kind: Path.AdminFileDownload; hash: string; filename: string }
+  | { kind: Path.UserView; username: string }
+  | { kind: Path.UserEdit; username: string };
 
 export function getPath(args: PathArguments) {
   switch (args.kind) {
@@ -100,6 +104,10 @@ export function getPath(args: PathArguments) {
       return "/admin/contests";
     case Path.AdminFileDownload:
       return `/admin/files/${args.hash}/${args.filename}`;
+    case Path.UserView:
+      return `/users/${args.username}`;
+    case Path.UserEdit:
+      return `/users/${args.username}/edit`
     default:
       throw new UnreachableError(args);
   }

@@ -27,3 +27,9 @@ export function canManageContests(session: SessionData | null): boolean {
   }
   return true;
 }
+
+export function canManageUser(session: SessionData | null, id: string): boolean {
+  if (session == null) { return false; }
+  else if (session.user.role == 'admin') { return true; }
+  else { return (session.user.id == id); }
+}

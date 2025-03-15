@@ -18,3 +18,5 @@ export type UserTable = {
 export const USER_PUBLIC_FIELDS = ["id", "email", "username", "name", "role"] as const;
 export type User = Selectable<UserTable>;
 export type UserPublic = Pick<User, (typeof USER_PUBLIC_FIELDS)[number]>;
+
+export type UserLookupDTO = Pick<User, "id" | "username" | "name" | "school" | "role">;

@@ -89,8 +89,8 @@ export const NavbarAccount = memo(() => {
   } else if (session.user.role === "admin") {
     return (
       <>
-        <NavbarLink href={getPath({ kind: Path.AdminHome })} className="lg:ml-auto">
-          {session.user.name || "Anonymous"}
+        <NavbarLink href={getPath({ kind: Path.AdminHome })} className="lg:ml-auto mr-4">
+          {session.user.username}
         </NavbarLink>
         <NavbarLink href={getPath({ kind: Path.AccountLogout })}>Logout</NavbarLink>
       </>
@@ -98,7 +98,9 @@ export const NavbarAccount = memo(() => {
   } else {
     return (
       <>
-        <div className="text-2xl px-1 lg:ml-auto">{session.user.name || "Anonymous"}</div>
+        <NavbarLink href={getPath({ kind: Path.UserView, username: session.user.username })} className="lg:ml-auto mr-4">
+          {session.user.username}
+        </NavbarLink>
         <NavbarLink href={getPath({ kind: Path.AccountLogout })}>Logout</NavbarLink>
       </>
     );
