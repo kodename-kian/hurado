@@ -19,7 +19,7 @@ export const UserViewer = ({user, canEdit}: UserViewerProps) => {
           </a>
          : "" }
       </p>
-      <p className="font-sans font-bold text-xl text-gray-500">
+      <p className="font-sans font-bold text-xl text-gray-500 mt-4">
         { user.name ? user.name : "Anonymous User" } <br></br>
         { user.school ? user.school : "No Affiliation" }
       </p>

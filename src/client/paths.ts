@@ -134,6 +134,7 @@ export enum APIPath {
   ProblemSetUpdate = "ProblemSetUpdate",
   ContestCreate = "ContestCreate",
   ContestUpdate = "ContestUpdate",
+  UserEdit = "UserEdit",
 }
 
 export type APIPathArguments =
@@ -155,7 +156,8 @@ export type APIPathArguments =
   | { kind: APIPath.ProblemSetCreate }
   | { kind: APIPath.ProblemSetUpdate; id: string }
   | { kind: APIPath.ContestCreate }
-  | { kind: APIPath.ContestUpdate; id: string };
+  | { kind: APIPath.ContestUpdate; id: string }
+  | { kind: APIPath.UserEdit; id: string };
 
 export function getAPIPath(args: APIPathArguments) {
   switch (args.kind) {
@@ -203,6 +205,8 @@ export function getAPIPath(args: APIPathArguments) {
       return "/api/v1/tasks/files";
     case APIPath.FileHashes:
       return "/api/v1/tasks/files/hashes";
+    case APIPath.UserEdit:
+      return `/api/v1/user/${args.id}`;
     default:
       throw new UnreachableError(args);
   }

@@ -70,4 +70,9 @@ export const zUserResetPasswordServer = z.object({
   password: z.string().min(8),
 });
 
+export const zUserEdit = z.object({
+  name: z.string(),
+  school: z.string(),
+});
+
 export type UserDTO = z.infer<typeof zUserRegister>;

@@ -14,6 +14,11 @@ type CreateUserData = {
   role?: "admin" | "user";
 };
 
+type UpdateUserData = {
+  name: string;
+  school: string;
+}
+
 export async function createUser(
   trx: Transaction<Models>,
   data: CreateUserData
@@ -94,4 +99,19 @@ function generatePasswordResetToken(): string {
 
 export function hashPassword(password: string): string {
   return hashSync(password, 10);
+}
+
+export async function updateUser(id: string, data: UpdateUserData) {
+  return await db.transaction().execute(async (trx) => {
+    const user = await trx
+      .updateTable("users")
+      .where("id", "=", id)
+      .set({
+        name: (data.name == "" ? null : data.name),
+        school: (data.school == "" ? null: data.school)
+      })
+      .executeTakeFirst();
+
+    return user;
+  });
 }
