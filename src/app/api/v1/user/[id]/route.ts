@@ -25,6 +25,6 @@ export async function PUT(request: NextRequest, context: NextContext<RouteParams
             return NextResponse.json({}, { status: 404 });
         }
     } else {
-        return NextResponse.json({ error: parsed.error.format() }, { status: 400});
+        return NextResponse.json({ error: parsed.error.format() }, { status: 400 });
     }
 }
